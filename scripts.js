@@ -71,15 +71,27 @@ function podMaker(array, podSize) {
   }
   
   console.log(pods);
-  return pods;
+  return pods;                                                        
 }
 
+function podAppender(podHolder, numPods) {
+  $('main > *').remove();
+  for (var p = 1; p <= numPods; p++)
+  {
+    var $ul = $('<ul>');
+    $('main').append($ul);
+    podHolder["pod" + p].forEach(function(elem) {
+      var $li = $('<li>').append(elem);
+      $ul.append($li);
+    });
+  }
+}
 
 function podButton(){ 
-
   $('button').on('click', function(){
     var numPods = $('select').val();
-	  podMaker(students, numPods);
+	  var podHolder = podMaker(students, numPods);
+    podAppender(podHolder, numPods);
     $('select').val("0");
   });
 }
