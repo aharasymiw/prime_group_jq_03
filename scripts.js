@@ -22,27 +22,56 @@ var students = [
   'Manuel Zumarraga',
   'Sam Richard'
 ];
-function Pod(){
-	
+
+Array.prototype.shuffle = function() {
+    var input = this;
+     
+    for (var i = input.length-1; i >=0; i--) {
+     
+        var randomIndex = Math.floor(Math.random()*(i+1)); 
+        var itemAtIndex = input[randomIndex]; 
+         
+        input[randomIndex] = input[i]; 
+        input[i] = itemAtIndex;
+    }
+    return input;
 }
 
-function podMaker(numPods) {
-  var podArray = [];
-  for (var i = 0; i < numPods; i++){
-	  var pod + i = new Pod();
+function podMaker(array, podSize) {
+  var shuffledStudents = array.shuffle();
+  var podNums = 1;
+  var pods = {};
+  var numOfPeeps = students.length / podSize;
+  while(podNums <= podSize){
+    addPeeps();
   }
-}
 
+  function addPeeps(){
+    var pod = [];
+    
+    for (i = 0; i < numOfPeeps - 1; i++){
+      pod.push(shuffledStudents[i]);
+    }
+
+    pods["pod" + podNums] = pod;
+    podNums++;
+  }
+  console.log(pods);
+  return pods;
+}
 
 function podButton(){ 
+
   $('button').on('click', function(){
     var numPods = $('select').val();
-	podMaker(numPods);
-	$('select').val("0");
+	  podMaker(students, numPods);
+    $('select').val("0");
   });
 }
 
 
 $(function() {
+
   podButton();	
+
 });
