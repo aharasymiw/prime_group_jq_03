@@ -42,30 +42,26 @@ function podMaker(array, podSize) {
   var podNums = 1;
   var pods = {};
   var numOfPeeps = students.length / podSize;
-  var keeper = numOfPeeps;
-  podMaker();
 
+  while(podNums <= podSize){
+    addPeeps();
+  }
 
-  function podMaker(){
+  function addPeeps(){
     var pod = [];
-    for (var i = 0; i < students.length; i++){
+    
+    for (i = 0; i < numOfPeeps - 1; i++){
       pod.push(shuffledStudents[i]);
-      
-      if (i % numOfPeeps){
-        pods["pod" + podNums] = pod;
-        podNums++;
-        pod = [];
-      }
-      
     }
+    
     pods["pod" + podNums] = pod;
     podNums++;
-
-
   }
+  
   console.log(pods);
   return pods;
 }
+
 
 function podButton(){ 
 
