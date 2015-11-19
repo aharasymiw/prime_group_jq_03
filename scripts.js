@@ -40,6 +40,7 @@ Array.prototype.shuffle = function() {
 function podMaker(array, podSize) {
   var shuffledStudents = array.shuffle();
   var podNums = 1;
+  var c = 0;
   var pods = {};
   var numOfPeeps = students.length / podSize;
 
@@ -51,7 +52,8 @@ function podMaker(array, podSize) {
     var pod = [];
     
     for (i = 0; i < numOfPeeps - 1; i++){
-      pod.push(shuffledStudents[i]);
+      pod.push(shuffledStudents[c]);
+      c++;
     }
     
     pods["pod" + podNums] = pod;
